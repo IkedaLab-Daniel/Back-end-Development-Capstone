@@ -1,0 +1,34 @@
+{% extends "base.html" %} {% block content %}
+
+  <div class="container">
+    <div class="row offset-3 col-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="mb-3">Concert Name: {{concert_details.concert_name}}</h5>
+          <h5 class="mb-3">Concert Date: {{concert_details.date}}</h5>
+          <h5 class="mb-3">Concert City: {{concert_details.city}}</h5>
+          <h5 class="mb-3">Concert Duration: {{concert_details.duration}} hr</h5>
+          <form action="{% url 'concert_attendee' %}" method="POST">
+            {% csrf_token %}
+            <input
+              name="concert_id"
+              type="number"
+              value="{{concert_details.id}}"
+              hidden="hidden"
+            />
+            <div class="input-group mb-3">
+              <label class="input-group-text" for="attendee_choice">RSVP</label>
+              <select class="form-select" name="attendee_choice" required>
+                {% for attending_choice in attending_choices %}
+                  <option {% if attending_choice.0 == status %}selected {% endif %} value="{{ attending_choice.0 }}">{{ attending_choice.1 }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <input type="submit" class="btn btn-primary" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

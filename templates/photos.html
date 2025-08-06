@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<div class="container">
+  <div class="row">
+    {% for photo in photos %}
+    <div class="col-lg-4 col-md-6 d-flex align-items-stretch py-3 mb-3">
+      <div class="card col-12">
+        <img class="card-img-top" src="{{photo.pic_url }}" alt="" />
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ photo.event_date }}</h5>
+          <p class="card-text mb-4">
+            {{ photo.event_city }}, {{ photo.event_state }}
+          </p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

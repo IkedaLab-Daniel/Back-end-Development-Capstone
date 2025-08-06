@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% block content %} {% for song in songs %}
+<div class="row justify-content-end section-bg mb-3 py-3">
+  <div class="row" data-bs-toggle="modal" data-bs-target="#abc{{ song.id }}">
+    <h3>{{ song.title }}</h3>
+  </div>
+
+  <div
+    class="modal"
+    id="abc{{ song.id }}"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Lyrics</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <p class="multiline">{{ song.lyrics }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %} {% endblock %}

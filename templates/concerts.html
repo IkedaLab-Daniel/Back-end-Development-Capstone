@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% block content %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col" hidden>#</th>
+      <th scope="col">Date</th>
+      <th scope="col">Concert Name</th>
+      <th scope="col">Duration</th>
+      <th scope="col">City</th>
+      <th scope="col">Attending</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for concert in concerts %}
+    <tr>
+      <th scope="row" hidden>{{ concert.id }}</th>
+      <th>{{ concert.concert.date }}</th>
+      <td>{{ concert.concert.concert_name }}</td>
+      <td>{{ concert.concert.duration }} hr</td>
+      <td>{{ concert.concert.city }}</td>
+      <td>{{ concert.status }}</td>
+      <td>
+        <a
+          href="{% url 'concert_detail' id=concert.concert.id %}"
+          type="button"
+          class="btn btn-primary"
+          ><i class="bi bi-pencil"></i
+        ></a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
